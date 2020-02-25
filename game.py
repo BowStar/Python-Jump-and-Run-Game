@@ -8,7 +8,7 @@ myfont = pygame.font.SysFont('Arial', 16)
 
 y=310
 score=1
-speed=3
+speed=2
 enemy=False
 enemy_x=590
 game_over=False
@@ -32,6 +32,11 @@ while run:
     
     keys = pygame.key.get_pressed()
     if keys[pygame.K_SPACE]:
+        if(game_over==True):
+            game_over=False
+            enemy=False
+            enemy_x=590
+            score=0
         for i in range(128):
             score +=1
             y-=1
@@ -78,7 +83,7 @@ while run:
     screen.blit(logo,(0,0))
     screen.blit(textsurface,(0,20))
     if(game_over==True):
-        game_over_text = myfont.render('GAME OVER', False, (0, 0, 0))
+        game_over_text = myfont.render('GAME OVER! PRESS SPACE TO START A NEW GAME', False, (0, 0, 0))
         screen.blit(game_over_text,(0,40))
     pygame.draw.rect(screen, (255,0,0), (20,y,50,50))
 
